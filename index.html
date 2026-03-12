@@ -36,7 +36,7 @@
         button { background-color: #4CAF50; color: white; padding: 10px 20px; margin: 10px; border: none; cursor: pointer; }
         button:hover { background-color: #45a049; }
         #output, #roiOutput { font-weight: bold; color: #00008B; }
-        .prayer { font-style: italic; margin: 20px; color: #555; }
+        .prayer { font-style: italic; margin: 20px; color: #555; display: none; }  /* Collapsible */
         .crypto-donate { background-color: #1E90FF; }
         #wiwoocardInfo { display: none; margin: 20px; border: 1px solid #ccc; padding: 10px; background-color: #fff; }
         @media (max-width: 600px) { canvas { width: 100%; height: auto; } button { width: 100%; } }
@@ -56,9 +56,16 @@
    
     <p>QR-Code für Score: <img src="freedom_qr.png" alt="QR Code"></p>
     
-    <div class="prayer">
-        <h3>Space Church Prayer (Inspiration von Einsiedel)</h3>
-        <p>O thou, my Lord, let me not sink in the maelstrom of wild waves...<br>Give meaning to my life!</p>
+    <button onclick="togglePrayer()">Space Church Prayer anzeigen (von Einsiedel)</button>
+    <div class="prayer" id="prayerText">
+        <h3>Space Church Prayer</h3>
+        <p>O thou, my Lord, let me not sink in the maelstrom of wild waves.<br>
+O thou, my Lord, let me not drown in this cold welling.<br>
+O thou, my Lord, O let me rise from this black water.<br>
+O thou, my Lord, O let me show that I am not tangible to the hater.<br>
+O thou, my Lord, O let me accomplish that which I owe to thee.<br>
+O thou, my Lord, let me not succumb to the weapons of the enemy of men.<br>
+Give meaning to my life!</p>
     </div>
     
     <h2>Interaktive Hügelbeet-Simulation (basierend auf Patent DE10307771A1)</h2>
@@ -95,11 +102,12 @@
     </div>
    
     <script>
+        function togglePrayer() { document.getElementById('prayerText').style.display = document.getElementById('prayerText').style.display === 'block' ? 'none' : 'block'; }
         function showWiwoocardInfo() { document.getElementById('wiwoocardInfo').style.display = 'block'; }
         function showKrakenQR() { document.getElementById('cryptoInfo').style.display = 'block'; }
         function showXMoney() { window.open('https://help.x.com/en/using-x/x-money/donate', '_blank'); }
-        function submitMarketing() { alert('Danke für die Anmeldung! Marketing-Aktion: Exklusives Wiwoocard-Offer per E-Mail.'); } // Platzhalter für E-Mail-Sendung
-       
+        function submitMarketing() { alert('Danke für die Anmeldung! Marketing-Aktion: Exklusives Wiwoocard-Offer per E-Mail.'); } // Platzhalter – Erweitern via GitHub Actions für E-Mail
+        
         function simulateHillbed(isMars = false) {
             const radius = 5;
             const teichDepth = 2;
